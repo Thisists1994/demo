@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				line-height: 30px;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<who></who>
+		</div>
+	</body>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var item = Vue.extend({
+			data:function(){
+				return{
+					msg:"他是小明"
+				}
+			},
+			methods:{
+				change(){
+					this.msg = "他明明是小埋"
+				}
+			},
+			template:'<h1 @click="change">{{ msg }}</h1>'
+		});
+		Vue.component("who",item);
+		var vm = new Vue({
+			el:"#box",
+			data:{
+				
+			}
+		})
+	</script>
+</html>

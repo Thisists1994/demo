@@ -1,0 +1,35 @@
+<!-- <button onclick="numbers.forEach(myFunction)">点我</button> -->
+<p id="demo"></p>
+
+<script>
+    demoP = document.getElementById("demo");
+    var numbers = [4, 9, 16, 25];
+
+    // function myFunction(item, index) {
+    //     demoP.innerHTML = demoP.innerHTML + "index[" + index + "]: " + item + "<br>";
+    // }
+    // var nub= 10;
+    numbers.forEach((value, index, arr) => {
+        // console.log('index:'+index+',value:'+value);
+        arr[index] = value * this.nub;
+
+        // console.log('aaaa:'+thisValue)
+    }, nub = 10)
+    console.log(numbers) // [4,9,16,25]
+    // thisValue
+    console.log(1,2,3,4,5)
+</script>
+<!-- <p>乘以: <input type="number" id="multiplyWith" value="10"></p>
+<button onclick="numbers.forEach(myFunction)">点我</button>
+ 
+<p>计算后的值: <span id="demo"></span></p>
+ 
+<script>
+var numbers = [65, 44, 12, 4];
+ 
+function myFunction(item,index,arr) {
+    arr[index] = item * document.getElementById("multiplyWith").value;
+    demo.innerHTML = numbers;
+    console.log(arr)
+}
+</script> -->

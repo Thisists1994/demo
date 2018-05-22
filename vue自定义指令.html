@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <p v-tack class='p'>
+        This is ts`s test.
+        <input v-focus type="text" name="" id="">
+        <input v-border type="text" name="" id="">
+    </p>
+    <p v-border class="p2">
+        This is ts`s test2
+    </p>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    // 自定义全局指令
+    Vue.directive('border', {
+        bind(el) {
+            el.style.border = '1px red solid'
+        }
+    })
+    new Vue({
+        el: '.p2' // 实例挂载.p2
+    })
+    new Vue({
+        el: '.p', // 实例挂载.p
+        // 自定义局部指令
+        directives: {
+            tack: {
+                inserted(el) {
+                    el.style.color = 'red'
+                }
+            },
+            focus: {
+                inserted(el) {
+                    el.focus()
+                }
+            }
+        }
+    })
+</script>
+
+</html>

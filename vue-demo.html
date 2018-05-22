@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        #box {
+            width: 600px;
+            height: 100%;
+            background: #ccc;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h2 {
+            color: orange;
+            border-bottom: 1px solid black;
+            padding-bottom: 20px;
+        }
+        
+        p {
+            font-size: 22px;
+            color: orange;
+            padding-bottom: 20px;
+            font-weight: 700
+        }
+        
+        table {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            border: 1px solid black;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        
+        button {
+            width: 60px;
+            height: 30px;
+            border-radius: 2px;
+            background: gold;
+            border: 1px solid gold;
+        }
+        
+        .btn {
+            font-size: 60px;
+            color: gray;
+            width: 50px;
+            cursor: pointer;
+        }
+        
+        .warp input {
+            margin: 10px 0;
+            width: 300px;
+            height: 30px
+        }
+        
+        .btn1 {
+            width: 300px;
+            height: 30px;
+            border-radius: 2px;
+            background: gold;
+            border: 1px solid gold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <select v-model="seVal">  <!-- 当选中某个选项，选项对应的 value值就会绑定给 seVal -->
+        <option value="" selected>--chose--</option>
+        <option value="a">1</option>
+        <option value="b">2</option>
+        <option value="c">3</option>
+    </select>
+        <select name="">
+    	<option value=""></option>
+    </select> 选择的是：{{seVal}}
+        <br/>
+        <!--  显示 下拉框对应的值 -->
+        <h2>提醒事项</h2>
+        <div class="btn" @click='qiehuan()'>{{ txt }}</div>
+        <div class="warp" v-show='bol'>
+            <form action="">
+                <label for="">待办日期</label>
+                <br>
+                <input type="text" placeholder="请输入待办日期" v-model='riqi'>
+                <br>
+                <label for="">待办事项</label>
+                <br>
+                <input type="text" placeholder="请输入待办事项" v-model='beizhu'>
+            </form>
+            <input type="submit" value="提交" class="btn1" @click='tijiao()'><br>
+            <input type="reset" value="重置" class="btn1" @click='cz()'>
+        </div>
+        <p>待办事项</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>日期</th>
+                    <th>备注</th>
+                    <th>删除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for='(item,i) in arr'>
+                    <td>{{ i+1 }}</td>
+                    <td>{{ item.riqi }}</td>
+                    <td>{{ item.beizhu }}</td>
+                    <td><button @click='tc()'>删除</button></td>
+                </tr>
+                <tr>
+                    <td colspan="4" v-show='this.arr.length==0'>暂无数据</td>
+                </tr>
+                <!-- <td colspan="4"></td> -->
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#box',
+        data: {
+            txt: "+",
+            bol: false,
+            // arr: [{
+            //     beizhu: "hello",
+            //     riqi: "jint",
+            // }, {
+            //     beizhu: "world",
+            //     riqi: "mt",
+            // }],
+            arr: [],
+            riqi: "",
+            beizhu: "",
+            seVal: "" //存放下拉框对应的值            
+        },
+        methods: {
+            qiehuan: function() {
+                this.bol = !this.bol;
+                this.txt = this.txt == "+" ? "-" : "+";
+            },
+            tijiao: function() {
+                this.arr.push({
+                    riqi: this.riqi,
+                    beizhu: this.beizhu,
+                });
+                this.riqi = "";
+                this.beizhu = "";
+            },
+            tc: function(i) {
+                this.arr.splice(this.index, 1);
+            },
+            cz: function() {
+                this.riqi = "";
+                this.beizhu = "";
+            }
+        }
+    })
+</script>

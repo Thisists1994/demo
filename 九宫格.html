@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>九宫格</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul {
+            margin: 0 auto;
+            width: 310px;
+        }
+        
+        li {
+            float: left;
+            display: block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 100px;
+            border-radius: 50%;
+        }
+        
+        .ac {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="">
+
+            </div>
+        </div>
+    </div>
+    <ul>
+        <li title="box1">1</li>
+        <li title="box2">2</li>
+        <li title="box3">3</li>
+        <li title="box8" class="btn">4</li>
+        <li>开始</li>
+        <li title="box4">6</li>
+        <li title="box7">7</li>
+        <li title="box6">8</li>
+        <li title="box5">9</li>
+    </ul>
+</body>
+
+</html>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+    var i = 0;//盒子数
+    var n = 0;//滚动次数
+    var timer1;
+    $('li').eq(4).click(function() {
+        clearInterval(timer1); //每次开启定时器前先清除定时器，防止用户多次点击
+        timer1 = setInterval(run, 150);
+    })
+    setTimeout
+    function run() {
+        i++;
+        $('li[title=box' + i + ']').addClass('ac').siblings().removeClass();
+        console.log(i);
+        if (i == 8) {
+            i = 0;
+            n++;
+        };
+        if (n > 2 && i == 3) {
+            clearInterval(timer1);
+            alert("中奖号码为3")
+        }
+    };
+    // $('li').eq(1).attr('title', 'adasdas')
+    // $('li[title=box' + i + ']')
+</script>

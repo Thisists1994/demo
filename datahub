@@ -1,0 +1,65 @@
+1. 安装日志采集程序
+安装文件在附件关联内容中下载
+根据游戏服的ubuntu版本（14或16）下载对应的安装文件，上传到游戏服，运行下面的命令安装
+dpkg -i ./td-xxxxxx
+
+2. 安装插件
+（1）安装阿里云datahub插件
+/usr/sbin/td-agent-gem install fluent-plugin-datahub
+
+
+
+# grade
+<source>
+  @type tail
+  format tsv
+  tag cf.grade
+  path /var/log/cf/grade/level1.log.%Y-%m-%d
+  pos_file /var/log/td-agent/pos/cf.grade.pos
+  keys platform_id,server_id,channel_id,user_uuid,character_uuid,device_id,grade,event_time,nickname
+  time_key event_time
+  time_format %Y-%m-%d %H:%M:%S
+  delimiter `
+  read_from_head true
+</source>
+
+<filter cf.*>
+  @type record_transformer
+  enable_ruby
+  <record>
+    event_time ${time.to_i * 1000000}
+  </record>
+</filter>
+
+
+
+<match cf.grade>
+  @type datahub
+  access_id LTAIuUuKxUgSVaRJ
+  access_key egEHBtCCIo9rf9qrusIhYHbgESV5Qi
+  endpoint http://dh-cn-hangzhou.aliyuncs.com
+  project_name cf_ios_datahub
+  topic_name raw_grade
+  column_names ["platform_id","server_id","channel_id","user_uuid","character_uuid","device_id","grade","event_time","nickname"]
+  flush_interval 5s
+  buffer_chunk_limit 3m
+  buffer_queue_limit 128
+  dirty_data_continue true
+  dirty_data_file /var/log/td-agent/dirty/cf.grade.dirty
+  retry_times 3
+  retry_interval 3
+  put_data_batch_size 1000
+  data_encoding UTF-8
+</match>
+
+
+
+
+
+cf_data_porter  AccessId  LTAIU6s6pH24BbzD
+                AccessKey XjvhCr2wtaSdI713sKN2gAlZS7NpCK
+
+
+
+ueigames
+ueigames@2016

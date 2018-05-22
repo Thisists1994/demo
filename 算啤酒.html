@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>算啤酒</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // var beer = 5, //啤酒
+    //     cap = 5, //盖子
+    //     bottle = 5; //空瓶
+    // while (cap >= 4 || bottle >= 2) {
+    //     var newBeer = parseInt(cap / 4) + parseInt(bottle / 2);
+    //     beer += newBeer;
+    //     cap = cap % 4 + newBeer;
+    //     bottle = bottle % 2 + newBeer;
+    // }
+    // console.log(beer)
+
+    var fn1 = function(money) {
+        var beer = 0, //啤酒
+            cap = 0, //盖子
+            bottle = 0, //空瓶
+            len = money / 2;
+        for (var i = 0; i < len; i++) {
+            beer++;
+            cap++;
+            bottle++;
+            if (cap % 4 === 0 || bottle % 2 === 0) {
+                var newBeer = parseInt(cap / 4) + parseInt(bottle / 2);
+                beer += newBeer;
+                cap = cap % 4 + newBeer;
+                bottle = bottle % 2 + newBeer;
+            };
+        };
+        return beer;
+    }
+    console.log(fn1(10))
+        // let fn2 = money => {
+
+    // }
+</script>

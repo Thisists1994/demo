@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // fn1假设为封装好的ajax请求
+        function fn1(data, callback) { //2.传的有data所以走第一条callback函数 且传一个空字符串和aa过去
+            if (data) {
+                callback("", data);
+            } else {
+                var err = new Error("错误了");
+                callback(err);
+            }
+        }
+        // 在这里调用ajax请求
+        fn1("aa", function(err, data) { //1.我在调用的时候 传了个aa //3.这个function就是callback err因为是空字符串所以为undefined 走else那条 打印出aa
+            if (err) {
+                console.log("错误" + err);
+            } else {
+                console.log(data)
+            }
+        })
+    </script>
+</body>
+
+</html>

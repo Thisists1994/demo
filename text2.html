@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // let a = {n:1}
+    // let b = a;
+    // a = {n:2}
+    // a.x = a;
+    // console.log(a.x)
+
+    // // console.log(a.x);
+    // // console.log(b.x);
+
+    // length = 10;
+    // function fn() {
+    //     console.log( this.length )
+    // }
+    // const obj = {
+    //     length : 5,
+    //     method : function(fn){
+    //         fn();
+    //         arguments[0]();
+    //     }
+    // };
+    // obj.method(fn)
+    // obj.method(fn,123)
+
+    // document.write(`<p>日</p>`)
+    // 算日期
+    // let currentDate = new Date();
+    // let days = 7;
+    // const GETDATE = (currentDate, days) => {
+    //     function doHandleMonth(month) {
+    //         if (month.toString().length == 1) {
+    //             month = "0" + month;
+    //         }
+    //         return month;
+    //     };
+    //     let DATE = [];
+    //     for (let i = 0; i < days; i++) {
+    //         let nowYear = currentDate.getFullYear();
+    //         let nowMonth = currentDate.getMonth();
+    //         let nowDate = currentDate.getDate();
+    //         newdate = new Date(nowYear, nowMonth, nowDate);
+    //         if (i > 0) {
+    //             let newtimems = newdate.getTime() - (24 * i * 60 * 60 * 1000);
+    //             let thagod = new Date(newtimems);
+    //             let thagoYear = thagod.getFullYear();
+    //             let thagoMonth = thagod.getMonth();
+    //             let thagoDate = thagod.getDate();
+    //             thagoMonth = doHandleMonth(thagoMonth + 1);
+    //             thagoDate = doHandleMonth(thagoDate);
+    //             //  return thagoMonth+"-"+thagoDate;
+    //             DATE.unshift(thagoMonth + "-" + thagoDate);
+    //         } else {
+    //             nowMonth = doHandleMonth(nowMonth + 1);
+    //             nowDate = doHandleMonth(nowDate);
+    //             //  return nowMonth+"-"+nowDate;
+    //             DATE.unshift(nowMonth + "-" + nowDate);
+    //         };
+    //     };
+    //     console.log(DATE);
+    // };
+    // GETDATE(currentDate, days);
+
+    const arr1 = [1,2,3];
+    console.log(arr1.slice());
+</script>
+
+</html>

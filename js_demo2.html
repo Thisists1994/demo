@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .btn {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            text-align: center;
+            line-height: 100px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="btn" id="btn1">弹窗</div>
+    <h1 id="demo">我的第一个页面</h1>
+    <p>我的第一个段落。</p>
+</body>
+
+</html>
+<script>
+    var btn1 = document.getElementById("btn1");
+    var demo = document.getElementById("demo");
+    btn1.onclick = function() {
+        demo.style.color = "red";
+        btn1.style.backgroundColor = "lightblue";
+        btn1.style.color = "lightyellow";
+    }
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<ul id="test">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+		</ul>
+	</body>
+</html>
+<script type="text/javascript">
+	for(var i=1;i<=3;i++){
+		setTimeout(function(){
+			console.log(i)
+		},0)
+	}
+	var li=document.getElementsByTagName('li')
+	console.log(li.length)
+	for(var i=0;i<li.length;i++){
+		li[i].index=i
+		li[i].onclick=function(){
+			console.log(this.index)
+		}
+
+	}
+	
+var str1=[{name:"11",age:11}];
+var str2=[{name:"22",age:22}];
+ 
+var str3 = [];
+ 
+for (var i = 0; i < str1.length; i++) {
+    str3.push(str1[i]);
+}
+ 
+for (var i = 0; i < str2.length; i++) {
+    str3.push(str2[i]);
+}
+ 
+
+ 
+var str3 = str1.concat(str2);	
+console.log(str3)
+</script>

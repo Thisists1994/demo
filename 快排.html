@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var arr = [6, 2, 7, 3, 8, 9];
+    let quickSort = array => {
+        let sort = (prev, len) => {
+            var i = prev, //创建变量i=0
+                j = len - 1, //指向最后一个数据 下标为length-1=5
+                k = array[prev]; //找到数组起始的第一个数据 arr[0]=6
+            // 我们要先让比k小的数据移动到k的左边，所以我们可以开始寻找比6小的数，从j(下标为5)开始，从右往左找，不断递减变量j的值，我们找到第一个下标3的数据比6小，于是把数据3移到下标0的位置，把下标0的数据6移到下标3，完成第一次比较：
+            if ((len - prev) > 1) {
+                while (i < j) {
+                    for (; i < j; j--) {
+                        if (array[j] < k) { //寻找比6小的数
+                            array[i++] = array[j];　 //a[i] = a[j]; i += 1;
+                            break;
+                        }
+                    };
+                };
+            }
+        }
+    }
+    console.log(quickSort(arr));
+</script>
+
+</html>

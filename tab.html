@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        
+        ul {
+            list-style: none
+        }
+        
+        a {
+            text-decoration: none
+        }
+        
+        .hide {
+            display: none;
+        }
+        
+        .wrap {
+            width: 500px;
+            margin: 50px
+        }
+        
+        .tab {
+            margin-bottom: 30px;
+        }
+        
+        .tab .tabList {
+            height: 40px;
+        }
+        
+        .tab .tabList li {
+            float: left;
+        }
+        
+        .tab .tabList li a {
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 20px
+        }
+        
+        .tab .tabList .ac a {
+            background: #ccc;
+            color: #fff
+        }
+        
+        .tab .tabItem {
+            min-height: 200px;
+            border: 1px solid #ccc;
+            padding: 20px
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div id="tab1" class="tab">
+            <ul class="tabList">
+                <li class="ac"><a href="javascript:;">itemA</a></li>
+                <li><a href="javascript:;">itemB</a></li>
+                <li><a href="javascript:;">itemC</a></li>
+            </ul>
+            <div class="tabCont">
+                <div class="tabItem">
+                    教育是中国艺术教育高端品牌，设有多个热门专业(UI设计、游戏设计、室内设计、影视特效、程序开发、数字艺术学。
+                </div>
+                <div class="tabItem hide">
+                    教育是中国艺术教育高端品牌，设有多个热门专业(UI设计、游戏设计、室内设计、影视特效、程序开发、数字艺术学历)等 ，多年来一直与国内外各大企业联合实训。
+                </div>
+                <div class="tabItem hide">
+                    教育是中国艺术教育高端品牌。
+                </div>
+            </div>
+        </div>
+        <div id="tab2" class="tab">
+            <ul class="tabList">
+                <li class="ac"><a href="javascript:;">itemA</a></li>
+                <li><a href="javascript:;">itemB</a></li>
+                <li><a href="javascript:;">itemC</a></li>
+                <li><a href="javascript:;">itemD</a></li>
+            </ul>
+            <div class="tabCont">
+                <div class="tabItem">
+                    是中国艺术教育高端品牌，设有多个热门专业(UI设计、游戏设计、室内设计、影视特效、程序开发、数字艺术学。
+                </div>
+                <div class="tabItem hide">
+                    是中国艺术教育高端品牌，设有多个热门专业(UI设计、游戏设计、室内设计、影视特效、程序开发、数字艺术学历)等 ，多年来一直与国内外各大企业联合实训。
+                </div>
+                <div class="tabItem hide">
+                    中国艺术教育高端品牌。
+                </div>
+                <div class="tabItem hide">
+                    是中国艺术教育高端品牌，设有多个热门专业(UI设计、游戏设计、室内设计、影视特效、程序开发、数字艺术学历)等 ，多年来一直与国内外各大企业联合实训，公司CEO携总监亲自授课，配备业界优秀师资，项目实训案例实时更新，每年为业界输送大量专业人才。
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>
+<script src="js/jquery-1.11.3.min.js"></script>
+
+<script>
+    //$.fn 扩展自定插件的方法
+    $.fn.tab = function(set) { //set是我调用这个函数传入的参数
+        var def = { //默认值
+            auto: true,
+            time: 1000
+        };
+        var opt = $.extend(def, set); //合并对象，后写入的set参数会和def我们设置的默认参数合并覆盖它
+        return this.each(function() {
+            var _this = $(this),
+                aLi = _this.find('.tabList li'),
+                tabItem = _this.find('.tabItem'),
+                timer,
+                i = 0;
+            aLi.click(function() {
+                i = $(this).index();
+                $(this).addClass('ac').siblings().removeClass('ac');
+                tabItem.eq(i).show().siblings().hide();
+            });
+            if (opt.auto) {
+                var run = () => {
+                    timer = setInterval(function() {
+                        i++;
+                        if (i == aLi.length) {
+                            i = 0;
+                        };
+                        aLi.eq(i).addClass('ac').siblings().removeClass('ac');
+                        tabItem.eq(i).show().siblings().hide();
+                    }, opt.time);
+                };
+                run();
+                _this.hover(
+                    function() {
+                        clearInterval(timer);
+                    },
+                    function() {
+                        run();
+                    }
+                );
+            };
+        })
+
+    };
+    var fn = () => {
+        console.log('链式操作')
+    }
+    var fn1 = function() {
+            console.log("12321321321")
+        }
+        //--------------------------------------------
+    $('#tab1').tab({
+        time: 2000
+    }).click(function() {
+        fn();
+    });
+    $('#tab2').tab({
+        auto: false
+    });
+</script>

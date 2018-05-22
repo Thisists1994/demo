@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+    <script>
+        // for (var i = 0; i < 10; i++) {
+        //     var a = document.createElement("a");
+        //     a.innerHTML = i;
+        //     a.addEventListener("click", function() {
+        //         alert(i);
+        //     })
+        //     document.body.appendChild(a)
+        // }
+        // 点击都显示10
+
+        // for (var i = 0; i < 10; i++) {
+
+        //     (function(i) { //匿名函数自运行 这个i为形参
+
+        //         var a = document.createElement("a");
+        //         a.innerHTML = i;
+        //         a.addEventListener("click", function(e) {
+        //             e.preventDefault(); //取消默认事件
+        //             alert(i);
+        //         })
+        //         document.body.appendChild(a)
+
+        //     })(i) //这边自运行的时候传入实参i 循环里的i
+
+        // }
+        // for (var i = 0; i < 10; i++) {
+        //     (function(x) {
+        //         var a = document.createElement('a');
+        //         a.innerHTML = x;
+        //         a.addEventListener("click", function(e) {
+        //             e.preventDefault();
+        //             alert(x);
+        //         })
+        //         document.body.appendChild(a);
+        //     })(i)
+        // }
+        // for (let i = 0; i < 10; i++) {   //换成let就解决了 不需要用到闭包
+        //     var a = document.createElement('a');
+        //     a.innerHTML = i;
+        //     // console.log(i)
+        //     document.body.appendChild(a);
+        //     a.addEventListener('click', function(e) {
+        //         e.preventDefault();
+        //         alert(i);
+        //     })
+        // }
+
+        for (var i = 0; i < 3; i++) {
+            var i = 'abc';
+            console.log(i);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // beer啤酒 cap盖子 bottle空瓶
+    let fn1 = money => {
+        var beer = 0,
+            cap = 0,
+            bottle = 0,
+            len = money / 2;
+        for (var i = 0; i < len; i++) {
+            beer++;
+            cap++;
+            bottle++;
+            while (cap >= 4 || bottle >= 2) {
+                var newBeer = parseInt(cap / 4) + parseInt(bottle / 2);
+                beer += newBeer;
+                cap = cap % 4 + newBeer;
+                bottle = bottle % 2 + newBeer;
+            }
+        }
+        console.log(beer)
+    }
+    fn1(10);
+</script>
+
+</html>

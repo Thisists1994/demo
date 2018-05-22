@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0 auto;
+        padding: 0;
+    }
+    .clear{
+        clear: both;
+    }
+    .box{
+        text-align: center;
+        width: 300px;
+        height: 20px;
+    }
+    ul,
+    li {
+        list-style: none;
+        clear: both;
+    }
+
+    li {
+        clear: both;
+        margin-bottom: 20px;
+    }
+
+    ul {
+        width: 140px;
+    }
+
+    .btn {
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        float: left;
+        border: 1px solid #eee;
+        background: lightgray;
+    }
+
+    p {
+        float: left;
+
+    }
+</style>
+
+<body>
+    <ul>
+        <li>
+            <div class="btn sup">-</div>
+            <p>男青年
+                <span>1</span>人</p>
+            <div class="btn add">+</div>
+        </li>
+        <li>
+            <div class="btn sup">-</div>
+            <p>女青年
+                <span>2</span>人</p>
+            <div class="btn add">+</div>
+        </li>
+        <li>
+            <div class="btn sup">-</div>
+            <p>大型犬
+                <span>3</span>人</p>
+            <div class="btn add">+</div>
+        </li>
+        <li>
+            <div class="btn sup">-</div>
+            <p>小型犬
+                <span>4</span>人</p>
+            <div class="btn add">+</div>
+        </li>
+    </ul>
+    <div class="clear"></div>
+    <div class="box">
+        <p class="people">总人数 :
+            <span>0</span>
+        </p>
+        <p class="dog">总犬数 :
+            <span>0</span>
+        </p>
+    </div>
+</body>
+
+</html>
+<script src="./js/jquery-1.11.3.min.js"></script>
+<script>
+    var num;
+    var _index;
+    $('.add').click(function () {
+        _index = $(this).parents('li').index();
+        num = $('li').eq(_index).find('p span').html()
+        num++;
+        $('li').eq(_index).find('p span').html(num)
+    })
+    $('.sup').click(function () {
+        _index = $(this).parents('li').index();
+        num = $('li').eq(_index).find('p span').html()
+        num--;
+        $('li').eq(_index).find('p span').html(num)
+    })
+</script>

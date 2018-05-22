@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>图片居中</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            /*display: table-cell;*/
+            vertical-align: middle;
+            text-align: center;
+            position: relative;
+        }
+        
+        .box img {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -100px;
+        }
+        
+        .box1 {
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+        
+        .box1 img {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .box2 {
+            margin: 0 auto;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #000;
+            text-align: center;
+        }
+        
+        .box2 span {
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        .box2 span img {
+            width: 200px;
+            height: 200px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="image/timg.jpg">
+    </div>
+    <div class="box1">
+        <img src="image/timg.jpg">
+    </div>
+    <div class="box2">
+        <span>
+			<img src="image/timg.jpg">
+		</span>
+    </div>
+    <p style="background-color:yellow">我是一个完整的段落</p>
+    <span style="background-color:pink">我是一段文字</span>
+</body>
+
+</html>
+<!-- 
+说明： 
+通过display转化成为表格的形式，再采用垂直居中的方法得到需要的结果。 
+display:table-cell 此元素会作为一个表格单元格显示（类似和） 
+(与其他一些display属性类似，table-cell同样会被其他一些CSS属性破坏，例如float, position:absolute，所以，在使用display:table-cell与float:left或是position:absolute属性尽量不用同用。设置了display:table-cell的元素对宽度高度敏感，对margin值无反应，响应padding属性，基本上就是活脱脱的一个td标签元素了)
+
+box1 就是因为用了table-cell,所以前面的margin: 0 auto;不生效。
+ -->

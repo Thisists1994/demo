@@ -1,0 +1,21 @@
+<script>
+    function CO() {
+        this.p = "I'm in constructed object";
+        this.alertP = function () {
+            alert(this.p);
+        }
+    }
+    var o2 = new CO()   // o2 为一个对象
+    console.log(o2.p)   // I'm in constructed object
+    // o2.alertP()         // 弹窗 I'm in constructed object
+    function C2(a, b) {
+        this.p = a + b;
+        this.alertP = function () {
+            alert(this.p)
+        }
+        console.log(this.p)
+    }
+    var c2 = new C2(2, 3);
+    c2.alertP()   //5
+    C2(2, 3) //5
+</script>

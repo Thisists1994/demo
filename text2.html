@@ -73,8 +73,19 @@
     // };
     // GETDATE(currentDate, days);
 
-    const arr1 = [1,2,3];
-    console.log(arr1.slice());
+    const arr1 = [1, 2, 3];
+    console.log(arr1.slice(','));
+
+
+    let [a, b] = [1, 2]
+    console.log(a, b)//1,2
+
+    const shapType = {
+        triangle: Symbol(),
+        square: Symbol()
+    };
+    console.log(shapType.triangle === shapType.square);  // false
+
 </script>
 
 </html>

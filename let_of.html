@@ -13,22 +13,23 @@
 </body>
 <script>
     let arr1 = [10, 20, 30];
+    //let value of arr1 就是在这个循环里声明一个变量然后将arr1不同属性的值分配给变量。
     for (let value of arr1) {
         value += 1;
         console.log(value) //11,21,31
     }
-    //let value of arr1 就是在这个循环里声明一个变量然后将arr1不同属性的值分配给变量。
-    // let i = 0;
-    // while (i < 100) {
-    //     console.log("hello" + i);
-    //     i++;
-    // }
-    // for (let i = 0; i < 100; i++) {
-    //     console.log("hello~" + i)
-    // }
     var c = 1,
         a = 5;
-    console.log(c += a)
+    console.log(c += a)     //6
+
+    let i = 0;
+    while (i < 10) {
+        console.log("hello" + i);
+        i++;
+    }
+    for (let i = 0; i < 10; i++) {
+        console.log("hello~" + i)
+    }
 </script>
 
 </html>

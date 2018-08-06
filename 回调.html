@@ -19,14 +19,31 @@
                 callback(err);
             }
         }
+
         // 在这里调用ajax请求
-        fn1("aa", function(err, data) { //1.我在调用的时候 传了个aa //3.这个function就是callback err因为是空字符串所以为undefined 走else那条 打印出aa
+        fn1("aa", function (err, data) { //1.我在调用的时候 传了个aa //3.这个function就是callback err因为是空字符串所以为undefined 走else那条 打印出aa
             if (err) {
                 console.log("错误" + err);
             } else {
                 console.log(data)
             }
         })
+
+        add = (a, b) => {
+            console.log(a + b);
+        }
+        LazyAdd = (c, cb) => {
+            console.log(c)
+            return function (d) {
+                console.log(d)
+                cb(c, d)
+            }
+        }
+        let result = LazyAdd(1, add)
+        result = result(2)
+
+        fn1().then(fn2)
+        
     </script>
 </body>
 

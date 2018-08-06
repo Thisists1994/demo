@@ -1,0 +1,15 @@
+<script>
+    function Point(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    Point.prototype.toString = function () {
+        return '(' + this.x + ', ' + this.y + ')';
+    };
+
+    var p = new Point(1, 2);    // {x:1,y:2}
+    console.log(p.toString())   // (1,2)
+
+    // 基本上ES6的class可以看作是一个语法糖 
+</script>

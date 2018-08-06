@@ -8,8 +8,23 @@
         return '(' + this.x + ', ' + this.y + ')';
     };
 
-    var p = new Point(1, 2);    // {x:1,y:2}
+    var p = new Point(1, 2);    // 实例化 {x:1,y:2}
     console.log(p.toString())   // (1,2)
 
-    // 基本上ES6的class可以看作是一个语法糖 
+    // 基本上ES6的class可以看作是一个语法糖 上面的代码用es6的class改写如下:
+    // class 定义类
+    class Point1 {
+        // 构造器——构造函数
+        constructor(x, y) {
+            this.x = x;
+            this.y = y
+        }
+        // 而this关键字则代表实例对象。也就是说，ES5 的构造函数Point，对应 ES6 的Point类的构造方法
+        // 方法之间不需要逗号分隔，加了会报错
+        toString() {
+            return `(${this.x},${this.y})`
+        }
+    }
+    var p1 = new Point1(1, 2)   // 实例化 {x:1,y:2}
+    console.log(p1.toString())  // (1,2)
 </script>

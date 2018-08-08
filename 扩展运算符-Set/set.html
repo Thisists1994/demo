@@ -55,8 +55,17 @@
         )
         return Array.from(new Set(array));
     };
-    dedupe([1, 1, 2, 3]);
+    dedupe([1, 1, 2, 3, 3, 2, 6]);
 
+    arrSet = (arr) => {
+        return Array.from(new Set(arr)); // 这里用Array.from() 实现将Set对象转化为数组的操作
+    }
+    console.log(arrSet([1, 1, 2, 2, 3, 3])) // [1,2,3]
+
+    arrSet2 = (arr) => {
+        return [...new Set(arr)]; // 这里用Array.from() 实现将Set对象转化为数组的操作
+    }
+    console.log(arrSet2([1, 1, 2, 2, 3, 3, 5])) // [1,2,3,5]
     //Set 遍历数组
 
     // keys() ：返回键名的遍历器

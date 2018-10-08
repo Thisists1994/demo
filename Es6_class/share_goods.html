@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <title>{{.title}}</title>
+    <style>
+        body {
+            background: lightgray;
+        }
+
+        .top {
+            width: 100%;
+            background: #ffffff;
+        }
+
+        .box {
+            margin: auto;
+            width: 100%;
+        }
+
+        .carousel-indicators li {
+            background-color: lightgray;
+        }
+
+        .carousel-indicators .active {
+            background-color: gray;
+        }
+
+        .text {
+            width: 90%;
+            margin: auto;
+            background-attachment: fixed;
+            background: #ffffff;
+            padding-bottom: 5px;
+        }
+
+        .cart {
+            height: 50px;
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            background: #ffffff;
+        }
+
+        .cart .rt {
+            width: 100%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 16px;
+            color: #ffffff;
+            background: #bf242a;
+        }
+
+        .wrap {
+            height: 50px;
+        }
+
+        .wrap .list {
+            width: 60%;
+            float: left;
+            background: #F54444;
+            height: 100%;
+        }
+
+        .wrap .time {
+            width: 40%;
+            float: left;
+            height: 100%;
+            background: lightyellow;
+            line-height: 50px;
+            text-align: center;
+
+        }
+
+        .Label {
+            font-family: PingFangSC-Regular;
+            font-size: 16px;
+            color: #28292C;
+            letter-spacing: 0;
+            line-height: 23px;
+            clear: both;
+        }
+
+        .SubLabel {
+            font-family: PingFangSC-Regular;
+            font-size: 14px;
+            color: #808080;
+        }
+
+        .price {
+            /* color: #bf242a; */
+            line-height: 50px;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: PingFangSC-Regular;
+            font-weight: 600;
+            float: left;
+            margin-bottom: 0;
+            width: 50%;
+            text-align: center;
+        }
+
+        .count {
+            color: #ffffff;
+            font-size: 12px;
+            font-family: PingFangSC-Regular;
+        }
+
+        .list-rt {
+            float: left;
+            margin-top: 5px;
+        }
+
+        .list-rt span {
+            display: block;
+            text-align: center;
+            color: #ffffff;
+            background: #bf242a;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .time p{
+            font-size: 14px;
+            font-family: PingFangSC-Regular;
+            color: #28292C;
+            font-weight: 600;
+            margin-bottom: 0;
+            line-height:50px;
+        }
+        .time .waitsale{
+            font-size: 12px;
+            line-height: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="top">
+        {{if gt (.banners|len) 0}} {{if eq (.banners|len) 1}} {{range .banners}}
+        <img src="{{banner .Icon}}" alt="" style="width:100%;"> {{end}} {{else}}
+        <div class="box">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- 分页器 -->
+                <ol class="carousel-indicators">
+                    {{range $index,$item:=.banners}}
+                    <li data-target="#carousel-example-generic" data-slide-to="{{$index}}"></li>
+                    {{end}}
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    {{range .banners}}
+                    <div class="item">
+                        <img src="{{banner .Icon}}" alt="..." style="width:100%;">
+                    </div>
+                    {{end}}
+                </div>
+            </div>
+        </div>
+        {{end}} {{end}}
+        <div class="wrap">
+            <div class="list">
+                {{$priceText := price .goods}} {{$scoreText := score .goods}}
+                <p class="price">{{if gt ($priceText|len) 0}}{{$priceText}}{{end}}{{if gt ($scoreText|len) 0}}{{if gt ($priceText|len) 0}}&emsp;{{end}}{{$scoreText}}{{end}}</p>
+                <div class="list-rt">
+                    {{$screenSaleCount :=screenSaleCount .goods}}
+                    <span>{{$screenSaleCount}}已售</span>
+                    <p class="count">库存剩余:{{.goods.ScreenRemainCount}}{{ .goods.ScreenUnit}}</p>
+                </div>
+            </div>
+            <div class="time">
+                {{$GoodsSaleStatus := goodsSaleStatus .goods}}
+                {{if eq $GoodsSaleStatus "WAITSALE"}}
+                    <p class="waitsale">抢购开始时间&nbsp;:<br/>{{formatDateTime .goods.OnSaleTime "01月02 15:04"}}</p>
+                {{end}}
+                {{if eq $GoodsSaleStatus "ONSALE"}}
+                    <p>火热抢购中</p>
+                {{end}}
+                {{if eq $GoodsSaleStatus "OFFSALE"}}
+                    <p>火热抢购中</p>
+                {{end}}
+            </div>
+        </div>
+        <div class="text">
+            <p class="Label">{{.goods.Label}}</p>
+            <p class="SubLabel">{{.goods.SubLabel}}</p>
+        </div>
+    </div>
+    <div class="box2" style="width:100%;margin-top: 10px;">
+        {{range .infos}}
+        <img src="{{.Icon}}" alt="" style="width:100%"> {{end}}
+    </div>
+    <div class="zf" style="height:50px;"></div>
+    <div class="cart">
+        <div class="rt" onclick="openApp()" data-goodsid="{{.goods.GoodsID}}">立即购买</div>
+    </div>
+</body>
+
+</html>
+<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    var goodsID = parseInt("{{.goods.GoodsID}}");
+    var storeID =  parseInt("{{.goods.StoreID}}")
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('.carousel-inner').find("div").first().addClass('active')
+        $("ol li:first").addClass('active')
+    })
+    $(function () {
+        // 获取界面上轮播图容器
+        var $carousels = $('.carousel');
+        var startX, endX;
+        // 在滑动的一定范围内，才切换图片
+        var offset = 50;
+        // 注册滑动事件
+        $carousels.on('touchstart', function (e) {
+            startX = e.originalEvent.touches[0].clientX;
+
+        });
+        $carousels.on('touchmove', function (e) {
+            endX = e.originalEvent.touches[0].clientX;
+        });
+        $carousels.on('touchend', function (e) {
+            var distance = Math.abs(startX - endX);
+            if (distance > offset) {
+                $(this).carousel(startX > endX ? 'next' : 'prev');
+            }
+        })
+    });
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端  
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端 
+    var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+    var ifWeixin = navigator.userAgent.indexOf("MicroMessenger") >= 0; // weixin
+    /*判断是否是ios9以上*/
+    function isIOS9() {
+        //获取固件版本
+        var getOsv = function () {
+            var reg = /OS ((\d+_?){2,3})\s/;
+            if (navigator.userAgent.match(/iPad/i) || navigator.platform.match(/iPad/i) || navigator.userAgent.match(/iP(hone|od)/i) || navigator.platform.match(/iP(hone|od)/i)) {
+                var osv = reg.exec(navigator.userAgent);
+                if (osv.length > 0) {
+                    return osv[0].replace('OS', '').replace('os', '').replace(/\s+/g, '').replace(/_/g, '.');
+                }
+            }
+            return '';
+        };
+        var osv = getOsv();
+        var osvArr = osv.split('.');
+        //初始化显示ios9引导
+        if (osvArr && osvArr.length > 0) {
+            if (parseInt(osvArr[0]) >= 9) {
+                return true
+            }
+        }
+        return false
+    }
+    //新建一个iframe的生成器
+    var createIframe = (function () {
+        var iframe;
+        return function () {
+            if (iframe) {
+                return iframe;
+            } else {
+                iframe = document.createElement('iframe');
+                iframe.style.display = 'none';
+                document.body.appendChild(iframe);
+                return iframe;
+            }
+        }
+    })()
+
+    // 打开APP
+    var openApp = function () {
+        var localUrlIos = "appxldf://"+goodsID+"&"+storeID;
+        var localUrlAndroid = "xldf://wx.stage.xldf365.com?goodID=" + goodsID+"&storeID="+storeID;
+        var openIframe = createIframe();
+        if (ifWeixin && isiOS) {
+            window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=cn.xldf365.xldf&fromcase=40003";
+        } else if (ifWeixin && isAndroid) {
+            window.location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=cn.xldf365.xldf&goodID=" + goodsID;
+        } else if (isiOS) {
+            //判断是否是ios
+            if (isIOS9()) {
+                // 判断是否是ios9以上版本
+                window.location.href = localUrlIos;
+                return;
+            }
+            window.location.href = localUrlIos;
+            var loadDateTime = Date.now();
+            setTimeout(function () {
+                var timeOutDateTime = Date.now();
+                if (timeOutDateTime - loadDateTime < 1000) {
+                    window.location.href = "http://static.xldf365.cn/pages/download_app.html";
+                }
+            }, 25);
+        } else if (isAndroid) {
+            //判断是否是android
+            if (isChrome) {
+                //chrome浏览器用iframe打不开得直接去打开
+                window.location.open(localUrlAndroid);
+            } else {
+                //抛出scheme
+                openIframe.src = localUrlAndroid;
+            }
+            setTimeout(function () {
+                window.location.href = "http://static.xldf365.cn/pages/download_app.html";
+            }, 500);
+        } else {
+            //winphone
+            console.log('非ios/android')
+            openIframe.src = localUrlAndroid;
+            setTimeout(function () {
+                window.location.href = "http://static.xldf365.cn/pages/download_app.html";
+            }, 500);
+        }
+    }
+</script>

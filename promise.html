@@ -20,21 +20,35 @@
 		})
 	}
 
-
-	function begin() {
-		Promise.all([ajax1(), ajax2()]).then(res => {
-			console.log(res)
-		}) // 待1 2执行完成后 再执行then
+	function ajax3() {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				console.log('5s');
+				resolve('ABC')
+			}, 5000);
+		})
 	}
 
-	begin()
+	// then的使用
+	ajax3().then(() => {
+		ajax2()
+	})
 
-	async function begin2() {
-		const a = await ajax1()
-		const b = await ajax2()
-		console.log(a, b)
-	}
-	begin2()
+
+	// function begin() {
+	// 	Promise.all([ajax1(), ajax2()]).then(res => {
+	// 		console.log(res)
+	// 	}) // 待1 2执行完成后 再执行then
+	// }
+
+	// begin()
+
+	// async function begin2() {
+	// 	const a = await ajax1()
+	// 	const b = await ajax2()
+	// 	console.log(a, b)
+	// }
+	// begin2()
 </script>
 
 </html>
